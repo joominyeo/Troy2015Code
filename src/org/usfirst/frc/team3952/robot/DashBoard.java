@@ -22,7 +22,7 @@ public class DashBoard {
 	public void updateDashboard(){
     	Iterator<String>  stringLogIterator = stringLog.keySet().iterator();
     	Iterator<String> booleanLogIterator = booleanLog.keySet().iterator();
-    	Iterator<String> integerLogIterator = booleanLog.keySet().iterator();
+    	Iterator<String> integerLogIterator = numberLog.keySet().iterator();
     	while(stringLogIterator.hasNext()){
     		String key = stringLogIterator.next();
     		String value = stringLog.get(key);

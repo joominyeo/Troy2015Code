@@ -24,11 +24,11 @@ public class DriveTrain {
     		power = 0;
     		turnRate = 0;
     	}
-    	else if(j.getRawButton(6)){
+    	else if(j.getRawButton(7)){
     		power = .8;
     		turnRate = .6;
     	}
-    	else if(j.getRawButton(7)){
+    	else if(j.getRawButton(6)){
     		power = .5;
     		turnRate = .4;
     	}    	

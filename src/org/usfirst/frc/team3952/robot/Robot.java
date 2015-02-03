@@ -36,7 +36,6 @@ public class Robot extends IterativeRobot {
     	board = new DashBoard(); 
     	camera = new ImageProcess();    	
     	driveTrain = new DriveTrain(new Joystick(1));
-    	camera.startCamera();
     	board.addBooleanLog("Tote", camera.isTote());
 		board.addNumberLog("Power", driveTrain.getPower()*100);
 		board.addNumberLog("TurnRate", driveTrain.getTurnRate()*100);	
@@ -58,6 +57,7 @@ public class Robot extends IterativeRobot {
     
 	public void teleopPeriodic() {
 		driveTrain.drive();
+    	camera.startCamera();
 		board.addBooleanLog("Tote", camera.isTote());
 		board.addNumberLog("Power", driveTrain.getPower()*100);
 		board.addNumberLog("TurnRate", driveTrain.getTurnRate()*100);	
