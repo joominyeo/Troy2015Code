@@ -30,15 +30,16 @@ public class Robot extends IterativeRobot {
 	//Speed / 20 feet = 2.38, 2.50, 2.60
 	DriveTrain driveTrain;
 	RobotDrive rd; // Robot Drive, add the Talons in here
-	SmartDashboard b; // Main Dashboard
-	Set<String> errorLog; // All Error Logs
 	ImageProcess camera;
-	
+	DashBoard board;
     public void robotInit() {
-    	errorLog = new HashSet<String>();
-    	b = new SmartDashboard(); 
+    	board = new DashBoard(); 
     	camera = new ImageProcess();    	
     	driveTrain = new DriveTrain(new Joystick(1));
+    	camera.startCamera();
+    	board.addBooleanLog("Tote", camera.isTote());
+		board.addNumberLog("Power", driveTrain.getPower()*100);
+		board.addNumberLog("TurnRate", driveTrain.getTurnRate()*100);	
     }
 
     /**
@@ -46,15 +47,7 @@ public class Robot extends IterativeRobot {
      */
     //"java -jar "C:\\Users\\Nocturnis Pham\\wpilib\\tools\\SmartDashboard.jar""
     //""C:\\Program Files (x86)\\FRC Dashboard\\Dashboard.exe""
-    
-    public void sendError(Set<String> errorLog){
-    	Iterator<String>  errorLogIterator = errorLog.iterator();
-    	while(errorLogIterator.hasNext()){
-    		String temp = errorLogIterator.next();
-    		b.putString(temp.substring(0, temp.indexOf(" ")), temp.substring(temp.indexOf(" ")));
-    	}
-    }    
-
+ 
     public void autonomousPeriodic() {
     	
     }
@@ -65,10 +58,9 @@ public class Robot extends IterativeRobot {
     
 	public void teleopPeriodic() {
 		driveTrain.drive();
-		b.putBoolean("Tote", camera.isTote());
-		b.putNumber("Power", driveTrain.getPower()*100);
-		b.putNumber("TurnRate", driveTrain.getTurnRate()*100);	
-		camera.startCamera();
+		board.addBooleanLog("Tote", camera.isTote());
+		board.addNumberLog("Power", driveTrain.getPower()*100);
+		board.addNumberLog("TurnRate", driveTrain.getTurnRate()*100);	
 		}
     
     /**s
