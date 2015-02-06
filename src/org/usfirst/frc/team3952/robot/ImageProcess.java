@@ -28,20 +28,23 @@ public class ImageProcess {
 	int session;
 	Point start;
 	Point stop;
+	Point middle;
+	ROI cam;
 	public ImageProcess(){
 		frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
 		session = NIVision.IMAQdxOpenCamera("cam0",
 	    NIVision.IMAQdxCameraControlMode.CameraControlModeController);
 	    NIVision.IMAQdxConfigureGrab(session);
-	    start = new Point(0,0);
-	    stop = new Point(640,640);
+	 
 	}
 	public void runCamera(){
+		int id = 0;
         NIVision.IMAQdxStartAcquisition(session);
+        NIVision.Rect rect = new NIVision.Rect(10, 10, 100, 100);
         NIVision.IMAQdxGrab(session, frame, 1);	    
+        NIVision.imaqAttenuate(frame, frame, NIVision.AttenuateMode.ATTENUATE_HIGH);
         CameraServer.getInstance().setImage(frame);
-        Timer.delay(0.005);		// wait for a motor update time
-        
+        Timer.delay(0.005);		// wait for a motor update time                
 	}
 	public void stopCamera(){
         NIVision.IMAQdxStopAcquisition(session);
