@@ -60,7 +60,7 @@ public class Robot extends IterativeRobot {
     	camera.runCamera();
 		board.addBooleanLog("Tote", camera.isTote());
 		board.addNumberLog("Power", driveTrain.getPower()*100);
-		board.addNumberLog("TurnRate", driveTrain.getTurnRate()*100);	
+		board.addNumberLog("TurnRate", driveTrain.getTurnRate()*100);	 
 		board.updateDashboard();
 		}
     

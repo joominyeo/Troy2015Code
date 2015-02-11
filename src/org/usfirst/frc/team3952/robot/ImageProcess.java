@@ -30,19 +30,23 @@ public class ImageProcess {
 	Point stop;
 	Point middle;
 	ROI cam;
+	CameraServer s;
 	public ImageProcess(){
 		frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
 		session = NIVision.IMAQdxOpenCamera("cam0",
 	    NIVision.IMAQdxCameraControlMode.CameraControlModeController);
 	    NIVision.IMAQdxConfigureGrab(session);
+	    NIVision.imaqFlatten(frame,
+	    NIVision.FlattenType.FLATTEN_IMAGE,
+		NIVision.CompressionType.COMPRESSION_JPEG, 10 * 30);
 	 
 	}
 	public void runCamera(){
 		int id = 0;
         NIVision.IMAQdxStartAcquisition(session);
-        NIVision.Rect rect = new NIVision.Rect(10, 10, 100, 100);
+        // NIVision.Rect rect = new NIVision.Rect(10, 10, 100, 100);
         NIVision.IMAQdxGrab(session, frame, 1);	    
-        NIVision.imaqAttenuate(frame, frame, NIVision.AttenuateMode.ATTENUATE_HIGH);
+        //NIVision.imaqAttenuate(frame, frame, NIVision.AttenuateMode.ATTENUATE_HIGH);
         CameraServer.getInstance().setImage(frame);
         Timer.delay(0.005);		// wait for a motor update time                
 	}
