@@ -57,7 +57,7 @@ public class Robot extends IterativeRobot {
     
 	public void teleopPeriodic() {
 		driveTrain.drive();
-    	camera.runCamera();
+    		camera.runCamera();
 		board.addBooleanLog("Tote", camera.isTote());
 		board.addNumberLog("Power", driveTrain.getPower()*100);
 		board.addNumberLog("TurnRate", driveTrain.getTurnRate()*100);	 
