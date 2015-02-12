@@ -36,7 +36,12 @@ public class DriveTrain {
     		power = 1.0;
     		turnRate = .8;
     	}	
+    	if(j.getY()>0)
+    	{
+    		rd.arcadeDrive(-j.getY() * power, j.getX() * turnRate, true);	
+    	}else{
 		rd.arcadeDrive(-j.getY() * power, -j.getX() * turnRate, true);
+    	}
 	}
 	public double getPower(){
 		return power;
