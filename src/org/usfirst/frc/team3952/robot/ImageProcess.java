@@ -38,7 +38,7 @@ public class ImageProcess {
 	    NIVision.IMAQdxConfigureGrab(session);
 	    NIVision.imaqFlatten(frame,
 	    NIVision.FlattenType.FLATTEN_IMAGE,
-		NIVision.CompressionType.COMPRESSION_JPEG, 10 * 30);
+		NIVision.CompressionType.COMPRESSION_JPEG, 10 * 3);
 	 
 	}
 	public void runCamera(){
