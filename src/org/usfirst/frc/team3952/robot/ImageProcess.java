@@ -1,15 +1,8 @@
 package org.usfirst.frc.team3952.robot;
+
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
-
-
-
-
-
-
-
-
 
 import com.ni.vision.NIVision;
 import com.ni.vision.NIVision.DrawMode;
