@@ -33,6 +33,17 @@ public class ImageProcess {
 	    NIVision.FlattenType.FLATTEN_IMAGE,
 		NIVision.CompressionType.COMPRESSION_JPEG, 10 * 30);
 	}
+	public boolean detectTote(){
+		// 1. Retrieve the image from the camera stream.
+		// 2. Convert image to binary Format: only shows white and black pixels
+		// 3. Calculate contour: use function that splits binary function into an array
+		// 4. Calculate the center of each contour: uses moments of the contour fo find the centre
+		// 5. Figure out which one is on the left and/or right: using the distance of the mass centre
+		//	compare with midpoint
+		// source: http://youtu.be/HYWgS2M8Zy4?t=2m6s
+		//	   https://github.com/rr1706/vision2015/tree/master/src
+		
+	}
 	public void runCamera(){
 		int id = 0;
         NIVision.IMAQdxStartAcquisition(session);
