@@ -43,6 +43,13 @@ public class ImageProcess {
 		// source: http://youtu.be/HYWgS2M8Zy4?t=2m6s
 		//	   https://github.com/rr1706/vision2015/tree/master/src
 		
+		/**
+		 * ALTERNATE
+		 **/
+		 
+		 //NI myRIO
+		 //Software dwnld: http://www.ni.com/product-documentation/14603/en/
+		
 	}
 	public void runCamera(){
 		int id = 0;
