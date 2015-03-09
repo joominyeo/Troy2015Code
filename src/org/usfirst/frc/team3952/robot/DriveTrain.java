@@ -16,7 +16,7 @@ public class DriveTrain {
 		leftDrive = new Talon(0);
 		rightDrive = new Talon(1);
 		rd = new RobotDrive(leftDrive, rightDrive);
-		power  = 1.0;
+		power  = 0.7;
 		turnRate = .8;
 	}
 	public void drive(){
