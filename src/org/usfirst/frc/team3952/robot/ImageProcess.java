@@ -1,11 +1,15 @@
 package org.usfirst.frc.team3952.robot;
+import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
-
+import java.net.Socket;
 import java.nio.ByteBuffer;
+import java.util.List;
 
 import com.ni.vision.NIVision;
+import com.ni.vision.VisionException;
 import com.ni.vision.NIVision.DrawMode;
 import com.ni.vision.NIVision.Image;
 import com.ni.vision.NIVision.Point;
@@ -21,34 +25,37 @@ import edu.wpi.first.wpilibj.Timer;
 public class ImageProcess {
 	Image frame;
 	int session;
-	Point start;
-	Point stop;
-	Point middle;
 	ROI cam;
 	CameraServer s;
 	int quality;
-	public ImageProcess(){
-		 frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
-		 session = NIVision.IMAQdxOpenCamera("cam0",
-					NIVision.IMAQdxCameraControlMode.CameraControlModeController);
-	        // the camera name (ex "cam0") can be found through the roborio web interface
-	     
+	List<Byte> m_imageData;
+	boolean easyMode = false;
+	
+	public ImageProcess(boolean inputEasyMode){
+		easyMode = inputEasyMode;
 	}
-	public void runCamera(){	
-		NIVision.IMAQdxConfigureGrab(session);
-		NIVision.IMAQdxStartAcquisition(session);
-		NIVision.IMAQdxGrab(session, frame, 1);
-		CameraServer.getInstance().setImage(frame);
-		RawData data = NIVision.imaqFlatten(frame,
-				NIVision.FlattenType.FLATTEN_IMAGE,
-				NIVision.CompressionType.COMPRESSION_JPEG, 10 * 30);
-		//Timer.delay(0.005);
-		/* Find the start of the JPEG data */
-        		// wait for a motor update time                
+	
+	public void runCamera() throws IOException{
+		if(easyMode){
+			s = CameraServer.getInstance();
+			s.setQuality(50);
+			s.startAutomaticCapture("cam0");
+		}
+		else{
+			NIVision.IMAQdxConfigureGrab(session);
+			NIVision.IMAQdxStartAcquisition(session);
+			NIVision.IMAQdxGrab(session, frame, 1);
+			RawData data = NIVision.imaqFlatten(frame,
+					NIVision.FlattenType.FLATTEN_IMAGE,
+					NIVision.CompressionType.COMPRESSION_JPEG, 10 * 50);
+			ByteBuffer buffer = data.getBuffer();
+		}		
 	}
+	
 	public void stopCamera(){
         NIVision.IMAQdxStopAcquisition(session);
 	}
+	
 	public boolean isTote(){
 		return false;
 	}	

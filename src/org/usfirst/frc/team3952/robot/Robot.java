@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import java.io.*;
@@ -32,13 +33,17 @@ public class Robot extends IterativeRobot {
 	RobotDrive rd; // Robot Drive, add the Talons in here
 	ImageProcess camera;
 	DashBoard board;
+	ArmController armCon;
+	int count;
     public void robotInit() {
     	board = new DashBoard(); 
-    	camera = new ImageProcess();    	
+    	camera = new ImageProcess(true);    	
     	driveTrain = new DriveTrain(new Joystick(1));
+    	armCon = new ArmController(board);
     	board.addBooleanLog("Tote", camera.isTote());
 		board.addNumberLog("Power", driveTrain.getPower()*100);
 		board.addNumberLog("TurnRate", driveTrain.getTurnRate()*100);	
+		count = 0;
     }
 
     /**
@@ -47,9 +52,14 @@ public class Robot extends IterativeRobot {
     //"java -jar "C:\\Users\\Nocturnis Pham\\wpilib\\tools\\SmartDashboard.jar""
     //""C:\\Program Files (x86)\\FRC Dashboard\\Dashboard.exe""
  
-    public void autonomousPeriodic() {
-    	
-    }
+    public void autonomousPeriodic(){               
+    	if(count  == 0){
+    		driveTrain.driveForwardOnTheLeftSide(System.currentTimeMillis());
+    		//board.addStringLog("Distance", armCon.measureTheHeight() + "");
+    		board.updateDashboard();
+    	}
+    	count ++;
+   }
 
     /**
      * This function is called periodically during operator control
@@ -57,15 +67,21 @@ public class Robot extends IterativeRobot {
     
 	public void teleopPeriodic() {
 		driveTrain.drive();
-    	//camera.runCamera();
-		board.addBooleanLog("Tote", camera.isTote());
+    	try {
+			camera.runCamera();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	armCon.startArm();
 		board.addNumberLog("Power", driveTrain.getPower()*100);
-		board.addNumberLog("TurnRate", driveTrain.getTurnRate()*100);	 
+		board.addNumberLog("TurnRate", driveTrain.getTurnRate()*100);
+		board.addBooleanLog("Top", !armCon.isTop());
+		board.addBooleanLog("Bottom", !armCon.isBottom());
 		board.updateDashboard();
 		}
     
     /**s
-     * This function is called periodically during test mode
+     k* T000i19 his function is called periodically during test mode
      */
     
     public void testPeriodic() {
