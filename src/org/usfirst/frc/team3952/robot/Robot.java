@@ -1,4 +1,3 @@
-
 package org.usfirst.frc.team3952.robot;
 
 import edu.wpi.first.wpilibj.CameraServer;
@@ -67,12 +66,17 @@ public class Robot extends IterativeRobot {
     
 	public void teleopPeriodic() {
 		driveTrain.drive();
+<<<<<<< HEAD
     	try {
 			camera.runCamera();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
     	armCon.startArm();
+=======
+    		camera.runCamera();
+		board.addBooleanLog("Tote", camera.isTote());
+>>>>>>> c89d44f2691e55ca14bc0fa7d6bcec1bcb0615cb
 		board.addNumberLog("Power", driveTrain.getPower()*100);
 		board.addNumberLog("TurnRate", driveTrain.getTurnRate()*100);
 		board.addBooleanLog("Top", !armCon.isTop());

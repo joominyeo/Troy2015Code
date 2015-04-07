@@ -1,12 +1,19 @@
 package org.usfirst.frc.team3952.robot;
+<<<<<<< HEAD
 import java.io.DataInputStream;
+=======
+
+>>>>>>> c89d44f2691e55ca14bc0fa7d6bcec1bcb0615cb
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
+<<<<<<< HEAD
 import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.util.List;
+=======
+>>>>>>> c89d44f2691e55ca14bc0fa7d6bcec1bcb0615cb
 
 import com.ni.vision.NIVision;
 import com.ni.vision.VisionException;
@@ -27,12 +34,41 @@ public class ImageProcess {
 	int session;
 	ROI cam;
 	CameraServer s;
+<<<<<<< HEAD
 	int quality;
 	List<Byte> m_imageData;
 	boolean easyMode = false;
 	
 	public ImageProcess(boolean inputEasyMode){
 		easyMode = inputEasyMode;
+=======
+	public ImageProcess(){
+		frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
+		session = NIVision.IMAQdxOpenCamera("cam0",
+	    NIVision.IMAQdxCameraControlMode.CameraControlModeController);
+	    NIVision.IMAQdxConfigureGrab(session);
+	    NIVision.imaqFlatten(frame,
+	    NIVision.FlattenType.FLATTEN_IMAGE,
+		NIVision.CompressionType.COMPRESSION_JPEG, 10 * 30);
+	}
+	public boolean detectTote(){
+		// 1. Retrieve the image from the camera stream.
+		// 2. Convert image to binary Format: only shows white and black pixels
+		// 3. Calculate contour: use function that splits binary function into an array
+		// 4. Calculate the center of each contour: uses moments of the contour fo find the centre
+		// 5. Figure out which one is on the left and/or right: using the distance of the mass centre
+		//	compare with midpoint
+		// source: http://youtu.be/HYWgS2M8Zy4?t=2m6s
+		//	   https://github.com/rr1706/vision2015/tree/master/src
+		
+		/**
+		 * ALTERNATE
+		 **/
+		 
+		 //NI myRIO
+		 //Software dwnld: http://www.ni.com/product-documentation/14603/en/
+		
+>>>>>>> c89d44f2691e55ca14bc0fa7d6bcec1bcb0615cb
 	}
 	
 	public void runCamera() throws IOException{
