@@ -1,19 +1,19 @@
 package org.usfirst.frc.team3952.robot;
-<<<<<<< HEAD
+//<<<<<<< HEAD
 import java.io.DataInputStream;
-=======
+//=======
 
->>>>>>> c89d44f2691e55ca14bc0fa7d6bcec1bcb0615cb
+//>>>>>>> c89d44f2691e55ca14bc0fa7d6bcec1bcb0615cb
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
-<<<<<<< HEAD
+//<<<<<<< HEAD
 import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.util.List;
-=======
->>>>>>> c89d44f2691e55ca14bc0fa7d6bcec1bcb0615cb
+//=======
+//>>>>>>> c89d44f2691e55ca14bc0fa7d6bcec1bcb0615cb
 
 import com.ni.vision.NIVision;
 import com.ni.vision.VisionException;
@@ -34,14 +34,15 @@ public class ImageProcess {
 	int session;
 	ROI cam;
 	CameraServer s;
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	int quality;
 	List<Byte> m_imageData;
 	boolean easyMode = false;
 	
 	public ImageProcess(boolean inputEasyMode){
 		easyMode = inputEasyMode;
-=======
+	}
+//=======
 	public ImageProcess(){
 		frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
 		session = NIVision.IMAQdxOpenCamera("cam0",
@@ -68,7 +69,8 @@ public class ImageProcess {
 		 //NI myRIO
 		 //Software dwnld: http://www.ni.com/product-documentation/14603/en/
 		
->>>>>>> c89d44f2691e55ca14bc0fa7d6bcec1bcb0615cb
+//>>>>>>> c89d44f2691e55ca14bc0fa7d6bcec1bcb0615cb
+		return Math.random()<0.5;
 	}
 	
 	public void runCamera() throws IOException{

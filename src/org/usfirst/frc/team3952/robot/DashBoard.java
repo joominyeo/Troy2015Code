@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3952.robot;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
@@ -12,14 +13,19 @@ public class DashBoard {
 	private Map<String,String> stringLog; // All Error Logs
 	private Map<String,Boolean> booleanLog;
 	private Map<String, Double> numberLog;
+	
+	//private ImageProcess i;
+	
 	SmartDashboard b; // Main Dashboard
 	public DashBoard(){
     	stringLog = new TreeMap<String,String>();
     	booleanLog = new TreeMap<String,Boolean>();
     	numberLog = new TreeMap<String,Double>();
     	b = new SmartDashboard();
+    	//i=new ImageProcess();
 	}
-	public void updateDashboard(){
+	
+	public void updateDashboard() {
     	Iterator<String>  stringLogIterator = stringLog.keySet().iterator();
     	Iterator<String> booleanLogIterator = booleanLog.keySet().iterator();
     	Iterator<String> integerLogIterator = numberLog.keySet().iterator();
