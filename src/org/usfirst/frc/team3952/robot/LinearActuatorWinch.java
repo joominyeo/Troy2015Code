@@ -107,16 +107,22 @@ public class LinearActuatorWinch{
 
 	public void goLAW(){
 		if(j.getRawButton(5)){//linAct retract
+			if(linAct.get()!=0.0)
+				moveLinAct(0.0);
+			else
 				moveLinAct(-0.5);
     	}
     	else if(j.getRawButton(6)){//linAct extend
+			if(linAct.get()!=0.0)
+				moveLinAct(0.0);
+			else
 				moveLinAct(0.5);
     	}
     	else if(j.getRawButton(8)){//winch Unwind
-				windWinch(0.9);//moveLinAct(0);
+				windWinch(1.0);//moveLinAct(0);
     	}
     	else if(j.getRawButton(7)){//winch wind
-				windWinch(-0.9);
+				windWinch(-1.0);
     	}
 	}
 	
